@@ -1,8 +1,15 @@
+#include "sc/socket/sc_sock.h"
 #include <stdio.h>
 
-int main(int argn, char** argv){
-   
-    puts("Hello");
+void run_app() {}
 
-    return 0;
+int main(int argn, char **argv) {
+
+  sc_sock_startup();
+
+  puts("Hello");
+  run_app();
+
+  sc_sock_cleanup();
+  return 0;
 }
