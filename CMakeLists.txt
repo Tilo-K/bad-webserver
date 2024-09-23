@@ -11,7 +11,7 @@ add_subdirectory(sc/mutex)
 add_subdirectory(sc/queue)
 
 # Add the executable for your project
-add_executable(server server.c handle.c)
+add_executable(server server.c)
 
 # Link the libraries created in the subdirectories
 target_link_libraries(server PRIVATE sc_socket sc_thread sc_mutex sc_queue)
