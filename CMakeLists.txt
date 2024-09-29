@@ -10,10 +10,11 @@ add_subdirectory(sc/thread)
 add_subdirectory(sc/mutex)
 add_subdirectory(sc/queue)
 add_subdirectory(sc/time)
+add_subdirectory(sc/string)
 
 # Add the executable for your project
 add_executable(server server.c)
 
 # Link the libraries created in the subdirectories
-target_link_libraries(server PRIVATE sc_socket sc_thread sc_mutex sc_queue sc_time)
+target_link_libraries(server PRIVATE sc_socket sc_thread sc_mutex sc_queue sc_time sc_str)
 
