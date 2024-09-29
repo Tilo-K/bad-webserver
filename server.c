@@ -32,6 +32,20 @@ void run_app() {
     puts(sc_sock_error(socket));
   }
 
+  while (true) {
+    struct sc_sock *client;
+    error = sc_sock_accept(socket, client);
+    if (error != 0) {
+      puts(sc_sock_error(socket));
+    }
+
+    printf("Accepted client");
+
+    sc_mutex_lock(&queue_mutex);
+    sc_queue_add_last(&conn_queue, client);
+    sc_mutex_unlock(&queue_mutex);
+  }
+
   sc_sock_term(socket);
   free(socket);
 }
