@@ -27,19 +27,25 @@ void run_app() {
     sc_thread_start(&threads[i], handle_client, &args);
   }
 
+  puts("Started threads");
+
   int error = sc_sock_listen(socket, host, port);
   if (error != 0) {
     puts(sc_sock_error(socket));
   }
 
   while (true) {
-    struct sc_sock *client;
+    struct sc_sock *client = malloc(sizeof(struct sc_sock));
+
     error = sc_sock_accept(socket, client);
     if (error != 0) {
       puts(sc_sock_error(socket));
     }
 
-    printf("Accepted client");
+    char buff[1024];
+    sc_sock_print(socket, buff, 1024);
+
+    printf("Accepted client: %s\n", buff);
 
     sc_mutex_lock(&queue_mutex);
     sc_queue_add_last(&conn_queue, client);
